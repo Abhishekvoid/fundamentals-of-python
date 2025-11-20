@@ -1,5 +1,4 @@
 
-
 # 1. Python Sequence Data Types
 
 """
@@ -75,3 +74,64 @@ for i in range(1, 5, 2): # with start stop and step
   print(i)
 
 
+
+
+# 2. Dictionary Data types
+
+"""
+
+(a). dictionary in python is a collection of data values, used to store data values like map, dictionary hold a key: value pair.
+
+
+(b). Values in a dictionary can be of any datatypes and can duplicated, whereas keys can't be repeated and must be immutable. The dictionary can also be created by the built-in function dict().
+"""
+
+d ={}
+
+d = {1: "paris", 2: "france", 3:"norway"}
+print(d)
+
+d1 = dict({1: "london", 2: "norway", 3: "fiji"})
+print(d1)
+
+
+"""
+(a). Accessing Key-value in Dictionary
+
+    to access items in dictionary refer to its key name. key can be used inside square brackets.
+    using get() method we can access dictionary elements.
+"""
+
+
+d = {1: "paris", 2: "france", 3:"norway"}
+
+print(d[1])
+
+
+# 3. Set data types
+
+"""
+set is unordred collection of data types that is iterable, mutable, and has no duplicate elements. The order of elements in a set is undefined though it may consist of various elements.
+
+Sets can be created by using the built-in set(). The type of elements in a set need not be the same,
+various mixed-up data types values can also be passed to the seat.
+"""
+
+s1 = set()
+
+s1 = set("datatypes")
+print(s1)
+
+s2 = set(["python", "C++", "Go"])
+print(s2)
+
+
+# Access Set items
+
+set1 = set(["chandani", "for", "china"])
+print(set1)
+
+for i in set1:
+  print(i, end=" ")
+
+print("paris" in set1)
