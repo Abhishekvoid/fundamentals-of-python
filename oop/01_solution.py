@@ -10,6 +10,7 @@ class Car:
     def inIndia(self):
             return (f"following car is {self.brand}, {self.model} at price of: {self.price}")
 
+
 class Engine:
      
     def __init__(self, power, torque, type):
@@ -35,3 +36,13 @@ print(my_car.inIndia())
 my_engine = Engine(500, 600, "electric")
 tesla = ElectricCar("Tesla", "Model S", 100000, 120, my_engine)
 print(f"{tesla.brand}, {tesla.model} price is: {tesla.price} with battery size of: {tesla.batterSize } engine is: {tesla.engine.power}")
+
+
+a = 100
+b = a
+
+print(f"id of a: {id(a)}, id of b: {id(b)}")  
+
+b += 1
+
+print(f"id of a: {id(a)}, id of b after change: {id(b)}")  
