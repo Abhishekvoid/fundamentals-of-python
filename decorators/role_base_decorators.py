@@ -2,18 +2,19 @@
 from functools import wraps
 def role_auth(role):
 
-    def decorators(func):
-        @wraps(func)
-        def wrapper(user, *args, **kwargs):
-            if role != role:
-                raise PermissionError("access denied")
-            return func(user, *args, **kwargs)
-        return wrapper
-    return decorators
+    @wraps(role)
+    def wrapper(user_role, *args, **kwargs):
+        if user_role != "admin":
+            print("Access denied: admins only")
+        else:
+            return role(user_role, *args, **kwargs)
+            
+    return wrapper
+    
 
 
-@role_auth("admin")
+@role_auth
 def acessing(role):
-    print("user deleted")
+    print("providing the access")
 
 acessing("admin")
