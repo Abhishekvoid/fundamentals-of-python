@@ -23,13 +23,23 @@ OOP solves this by binding data + behavior together
 
 # class
 class user:  
-    pass
+    age = 23
 
 # object
 u = user()
 
 # under the hood
 u = user.__call__()
+
+print(u.age)
+
+# changing the value of age here
+
+admin = user()
+print(admin.age)
+
+admin.age = 45
+print(f"after change: {admin.age}")
 
 """
 Python:
