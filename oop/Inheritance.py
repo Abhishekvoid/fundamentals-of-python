@@ -34,5 +34,16 @@ this lookup chains in MRO
 # Example
 
 class Payment:
-    def pay
+    def pay(self):
+        raise NotImplementedError
 
+class UPI(Payment):
+    def pay(self):
+        print("payment via UPI")
+
+class Card(Payment):
+    def pay(self):
+        print("payment via card")
+
+def checkout(payment: Payment):
+    payment.pay() 
