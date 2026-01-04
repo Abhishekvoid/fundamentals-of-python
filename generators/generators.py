@@ -5,7 +5,6 @@
 """
 
     # memory + control over execution 
-
       - insted of creating everything at once, generators produce values one at a time, only when needed.
 
 """
