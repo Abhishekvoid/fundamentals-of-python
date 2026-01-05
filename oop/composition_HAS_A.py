@@ -51,3 +51,11 @@ class UserService:
         if self.validator.validate(data):
             self.repo.save(data)
     
+
+
+
+"""
+- composition follow has a relationship insted of is a 
+- means its no directly inherti the class... which leads to lose coupling means changes to the data which not affect 
+- the main class is compsite and sub class is componet, we dont directly pass the class insted we create a object or contrucutor
+"""
