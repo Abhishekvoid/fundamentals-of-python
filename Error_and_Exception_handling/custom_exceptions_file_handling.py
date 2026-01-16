@@ -1,5 +1,5 @@
 
-# Raising Your own Errors
+# 1. Raising Your own Errors
 
 def divide_safe(a,b):
     if b == 0:
@@ -12,7 +12,7 @@ try:
 except ZeroDivisionError as e:
     print(f"Caught: {e}")
 
-# custom Exceptions
+# 2. custom Exceptions
 
 class validatorError(Exception):
     """base validation error"""
@@ -35,7 +35,7 @@ def register_email(email, username):
         raise UserExistsError(username)
     print("user registered!")
 
-# file handling + exceptions
+# 3. file handling + exceptions
 
 import json
 import os
@@ -78,3 +78,52 @@ except ConfigParseError as e:
         print(f"Fix JSON: {e}")
 finally:
     print("Cleanup complete")
+
+
+# 4. context manager + exceptions
+
+class DatabaseConnection:
+    def __enter__(self):
+        self.conn =  sqlite3.connect('app.db')
+        return self.conn
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.conn:
+            self.conn.close()
+        return True
+
+with DatabaseConnection() as db:
+    db.excute("Insert into users...")
+
+# 4.1 logging + sentry Intergration
+
+import logging
+logger = logging.getLogger(__name__)
+
+def process_payment(amount):
+    try:
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
+        # Payment logic...
+    except ValueError as e:
+        logger.warning(f"Payment validation failed: {e}")
+        raise
+    except Exception as e:
+        logger.error(f"Payment failed: {e}", exc_info=True)
+        sentry.capture_exception(e)
+        raise PaymentProcessingError("Payment gateway error")
+    
+# Real-World Examples
+# Example 1: API Rate Limiter
+class RateLimitExceeded(Exception):
+    pass
+
+class APIRateLimiter:
+    def __init__(self, max_requests=100):
+        self.max_requests = max_requests
+        self.count = 0
+    
+    def check_limit(self):
+        self.count += 1
+        if self.count > self.max_requests:
+            raise RateLimitExceeded(f"Max {self.max_requests} requests exceeded")
