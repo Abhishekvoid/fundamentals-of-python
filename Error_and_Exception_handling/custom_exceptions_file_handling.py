@@ -114,7 +114,7 @@ def process_payment(amount):
         raise PaymentProcessingError("Payment gateway error")
     
 # Real-World Examples
-# Example 1: API Rate Limiter
+# Example 1: API Rate Limiter.
 class RateLimitExceeded(Exception):
     pass
 
