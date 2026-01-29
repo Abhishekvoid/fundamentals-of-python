@@ -35,8 +35,6 @@ asyncio.run(func())
 
 import time
 
-import asyncio
-
 # 1. DEFINITION
 async def say_hello(name):
     print(f"Hello {name}")
@@ -56,3 +54,33 @@ async def main():
 
 asyncio.run(main())
 "end"
+
+
+# 3.
+
+async def fetch_menu():
+    print("fetching menu...")
+    await asyncio.sleep(2)
+    print("Menu recevied")
+    return "menu data"
+
+async def fetch_offers():
+    print("fetching offers...")
+    await asyncio.sleep(2)
+    print("offers recevied")
+    return "offer data"
+
+async def main():
+
+    start = time.time()
+
+    menu = await fetch_menu()
+    offers = await fetch_offers()
+
+    print(f"done in {time.time() - start:.2f} seconds")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+    
