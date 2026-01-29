@@ -41,3 +41,57 @@ if __name__ == "__main__":
     asyncio.run(main())
 
 
+# problem 2
+"""
+We have an AI endpoint that takes 5 seconds to generate a summary. We also need to fetch the user's profile from the DB (0.5s) and check their subscription status (0.5s). How do you optimize this endpoint?
+"""
+
+
+
+async def generated_summary():
+    print("AI: starting summary generation...")
+    await asyncio.sleep(5)
+    print("AI: finished generating summary")
+    return "summaryyyy..."
+
+
+async def fetch_user():
+    print("fetching user data...")
+    await asyncio.sleep(0.5)
+    print("finished fetching the user")
+    return {"username": "Abhishek", "id": 1}
+
+
+async def check_subscription():
+    print("checking user subscription")
+    await asyncio.sleep(0.5)
+    print("user subscription is active")
+    return True
+
+
+async def main():
+
+
+    start_time = time.time()
+
+
+    results = await asyncio.gather(
+        generated_summary(),
+        fetch_user(),
+        check_subscription(),
+)
+
+
+    summary, user, is_subscribe = results
+
+
+    end_time = time.time()
+    total_time = end_time - start_time 
+
+
+    print(f"total time taken: {total_time:.2f} seconds")
+    print(f"Result: User {user['username']} (Subscribed: {is_subscribe}) got summary.")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
