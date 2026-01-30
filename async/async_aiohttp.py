@@ -6,22 +6,23 @@ import time
 async def fetch_swiggy_restauratns(session):
 
     print("fetching restaurants...")
-    async with session.get('https://api.spoonacular.com/recipes?apiKey=YOUR_KEY') as resp:
+    async with session.get('http://127.0.0.1:8000/api/registery/api/restaurants/') as resp:
         data =  await resp.json()
-        return f"{len(data['results'])} restaurants"
+        return f"{len(data)} restaurants"
     
 async def fetch_user_profile(session):
 
     print('fetching user profile')
-    async with session.get('https://jsonplaceholder.typicode.com/users/1') as resp:
-        user = await resp.json()
-        return user['name']
+    async with session.get('http://127.0.0.1:8000/api/registery/api/profile/') as resp:
+        data = await resp.json()
+        return f"User: {data['username']}"
 
 async def fetch_gold_status(session):
 
     print('checking gold status...')
-    async with session.get('https://httpbin.org/delay/3') as resp:
-        return 'gold active'
+    async with session.get('http://127.0.0.1:8000/api/registery/api/gold-status/') as resp:
+        data = await resp.json()
+        return f"Gold Member: {data['is_gold']}"
 
 async def main():
     
