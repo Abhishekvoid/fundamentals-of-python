@@ -6,10 +6,10 @@
  - A delivery app cannot allow a "Scheduled Delivery Time" to be earlier than the "Order Creation Time
 """
 
-from pydantic import BaseModel, model_validator, field_validator, AfterValidator 
+from pydantic import BaseModel, model_validator, field_validator, AfterValidator, Field 
 
 from datetime import datetime
-from typing import Annotated
+from typing import Annotated, Union, Literal
 
 class Order(BaseModel):
 
@@ -57,3 +57,23 @@ MotorID = Annotated[int, AfterValidator(validate_motor_id)]
 class RobotConfig(BaseModel):
     arm_id = MotorID
     leg_id  = MotorID
+
+
+
+# 4. Discriminated Unions
+
+# If the agent calls search, it needs a query. If it calls calculator, it needs expression
+
+class SearchTool(BaseModel):
+
+    type: Literal['search']
+    query: str
+
+class CalculatorTool(BaseModel):
+
+    type: Literal['calc']
+    expression: str
+
+class AgentAction(BaseModel):
+
+    action: Union[SearchTool, CalculatorTool] = Field(discriminator='type')     
