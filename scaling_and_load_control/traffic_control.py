@@ -54,6 +54,7 @@ class TrafficController:
     async def safe_call(self, func, *args, **kwargs):
         return await func(*args, **kwargs)
 
+
     # 4. CIRCUIT BREAKER (Persistent failure handling)
     async def circuit_breaker(self, func, *args, **kwargs):
         if self.circuit_open:
@@ -79,7 +80,7 @@ class TrafficController:
         return f"Sorry, high traffic! Basic answer to '{query[:50]}...': Please try again in 30s."
 
     # 6. QUEUEING (Buffer burst traffic)
-    def __init__(self):
+    def __init__(self): 
         self.request_queue: deque = deque(maxlen=100)
         self.priority_queue: Dict[str, int] = {}
 
