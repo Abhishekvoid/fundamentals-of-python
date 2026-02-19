@@ -6,6 +6,7 @@ MAX_QUEUE = 100
 
 class SystemOverLoad(Exception):
     pass
+
 class LLMSlotManager:
     def __init__(self):
     
@@ -13,11 +14,7 @@ class LLMSlotManager:
         self._waiting = 0
         self._lock = asyncio.Lock()
 
-
-
-
     @asynccontextmanager
-
     async def llm_slot(self):
 
         global _waiting
