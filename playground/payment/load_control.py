@@ -38,3 +38,5 @@ class PaymentSlotManager:
             async with self._lock:
                 self._waiting -= 1
 
+
+slot_mananger = PaymentSlotManager()
