@@ -23,7 +23,7 @@ async def payment(method:str, endpoint:str, **kwargs):
     try:
 
         async with slot_mananger.payment_slot():
-            response = await calling_stripe(method:"online", endpoint:"book")
+            response = await calling_stripe(method, endpoint)
             payment_circuit_breaker.record_sucess()
             return response
     except SystemOverLoad:
