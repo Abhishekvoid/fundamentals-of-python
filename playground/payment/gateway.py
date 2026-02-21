@@ -14,7 +14,7 @@ class PaymentUnavaible(Exception):
 async def payment(method:str, endpoint:str, **kwargs):
 
 
-    if not payment_circuit_breaker.is_open:
+    if payment_circuit_breaker.is_open:
 
         logger.warning("Stripe not aviable, Circuit is open")
         raise PaymentUnavaible("stripe temporarily avaiable")
