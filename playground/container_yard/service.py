@@ -1,6 +1,7 @@
 from typing import List, Optional
 from models import Container, YardZone, ContainerStatus
 from repo import ContainerRepository, YardZoneRepository
+from datetime import datetime, timezone
 
 class YardManagementService:
     def __init__(self):
@@ -67,7 +68,7 @@ class YardManagementService:
     async def get_containers_by_status(self, status: ContainerStatus) -> List[Container]:
         return await self.container_repo.list({'status': status})
     
-    async def get_zone_utilization(self, zone_code: str) -> Dict[str, float]:
+    async def get_zone_utilization(self, zone_code: str) -> dict[str, float]:
         zone = await self.zone_repo.get(zone_code)
         if not zone:
             return {'utilization': 0.0}
