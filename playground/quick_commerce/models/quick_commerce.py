@@ -53,3 +53,13 @@ class Rider(BaseModel):
     max_weight: float = Field(gt=0)  # kg
     status: RiderStatus = RiderStatus.IDLE
     last_updated: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class Store(BaseModel):
+    model_config = ConfigDict(from_attributes=True, extra='forbid')
+    
+    store_id: str
+    name: str
+    store_lat: float = Field(ge=-90, le=90)
+    store_lng: float = Field(ge=-180, le=180)
+    is_closed: bool = False
+    max_orders_per_hour: int = 100
