@@ -29,3 +29,27 @@ users = [
 
 email_to_name = {user["email"]: user["name"] for user in users}
 print(email_to_name)
+
+
+
+import json
+
+
+def group_robots_by_status(robots):
+  groups = {}
+  for robot in robots:
+      status = robot["status"]
+      if status not in groups:
+          groups[status] = []
+      groups[status].append(robot)
+  return groups
+
+robots = [
+    {"id": 1, "status": "active", "name": "Robot-A"},
+    {"id": 2, "status": "charging", "name": "Robot-B"},
+    {"id": 3, "status": "active", "name": "Robot-C"},
+    {"id": 4, "status": "error", "name": "Robot-D"},
+]
+
+result = group_robots_by_status(robots)
+print(json.dumps(result, indent=2))

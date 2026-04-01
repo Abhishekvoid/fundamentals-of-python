@@ -40,11 +40,13 @@ users = [
 ]
 
 emails = []
+status = []
 for user in users:
     if user["status"] == "active":
         emails.append(user["email"])
-
-print (emails)
+        status.append(user["status"])
+        
+print (emails, status)
 
 comp_emails = [user["email"] for user in users if user["status"] == "active"]
 print(comp_emails) 
