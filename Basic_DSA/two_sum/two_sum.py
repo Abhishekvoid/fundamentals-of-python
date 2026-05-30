@@ -97,3 +97,23 @@ def two_sum_sorted(nums, target):
 
 
 print(two_sum_sorted([2,11,7,15], 9), "hh")
+
+
+
+def pointers(nums: int, target):
+    
+    left  = 0
+    right = len(nums) -1 
+    
+    while(left < right):
+        
+        current_sum = nums[left] + nums[right]
+        
+        if current_sum == target:
+            return [left, right]
+        
+        elif current_sum < right:
+            left += 1
+        
+        else: right -=1 
+    return []

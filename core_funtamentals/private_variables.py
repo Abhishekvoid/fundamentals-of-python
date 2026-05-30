@@ -41,9 +41,7 @@ class MyClass:
         return self.__private_var + "and" + self.__private_method()
 
 obj = MyClass()
-
 print(obj.show_private())
-
 print(obj._MyClass__private_method())
 
 
